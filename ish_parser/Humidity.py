@@ -14,6 +14,12 @@ class Humidity(object):
     except:
       self.humidity = "MISSING"
 
+  def get_numeric(self):
+    if self.humidity == "MISSING":
+      return float('NaN')
+    else:
+      return self.humidity
+
   def __str__(self):
     return str(self.humidity)
 

@@ -23,5 +23,5 @@ class Observation(object):
     if self._obs_value in missing:
       return float('NaN')
     else:
-      return str(self._obs_value)
+      return float(self._obs_value)
 

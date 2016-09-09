@@ -2,7 +2,7 @@ import unittest
 import datetime
 import pytz
 import math
-from src.ish_report import ish_report, ish_reportException
+from ish_parser.ish_report import ish_report, ish_reportException
 
 class ish_report_test(unittest.TestCase):
 
@@ -195,10 +195,15 @@ class ish_report_test(unittest.TestCase):
     self.assertEqual(str(ish.sky_ceiling), '22000')
 
 
-  def test_string_with_missing_temp_and_expect_NaN(self):
+  def test_string_for_get_numeric_implementation(self):
     noaa = """0059035480999991943070124004+52467+000950FM-12+004699999V0200501N00461220001CN0040001N9+99999+99999999999ADDAY121999GA1001+999999999GF108991081051004501999999MW1051"""
     ish = ish_report()
     ish.loads(noaa)
     self.assertEqual(ish.datetime,
                      datetime.datetime(1943, 7, 2, 0, 0, tzinfo=pytz.UTC))
     self.assertTrue(math.isnan(ish.air_temperature.get_numeric()))
+    self.assertTrue(math.isnan(ish.humidity.get_numeric()))
+    self.assertEqual(ish.wind_direction.get_numeric(), 50)
+    self.assertEqual(ish.wind_speed.get_numeric(), 4.6)
+    self.assertEqual(ish.visibility_distance.get_numeric(), 4000)
+    self.assertEqual(ish.sky_ceiling.get_numeric(), 22000)
