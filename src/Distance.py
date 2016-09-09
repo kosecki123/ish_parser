@@ -9,6 +9,9 @@ class Distance(Observation):
   INCHES = 2
   MISSING = [999, 99999, 999999]
 
+  def get_numeric(self):
+    return self._get_numeric(self.MISSING)
+
   def get_inches(self):
     ''' convert the measurement to inches '''
     if self._obs_value in self.MISSING:

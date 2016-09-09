@@ -7,6 +7,9 @@ class Direction(Observation):
   RADIANS = 1
   MISSING = 999
 
+  def get_numeric(self):
+    return self._get_numeric(self.MISSING)
+
   def __str__(self):
     if int(self._obs_value) == self.MISSING:
       return 'MISSING'

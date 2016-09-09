@@ -101,6 +101,10 @@ If you make some code changes (yay) please write the appropriate tests and run a
 python -m unittest tests
 ```
 
+Fork info
+--------------------------------
+Added get_numeric() to all observations, in case of MISSING value NaN will be returned.
+
 Contact
 --------------------------------
-For questions, contact Tom Hayden (thayden@gmail.com)
+For questions, contact Tom Hayden (thayden@gmail.com), fork: Piotr Kosiński (piotrkosinski@gmail.com)

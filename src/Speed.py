@@ -7,6 +7,9 @@ class Speed(Observation):
   MILESPERHOUR = 1
   MISSING = [999, 9999, 999.9]
 
+  def get_numeric(self):
+    return self._get_numeric(self.MISSING)
+
   def get_miles(self):
     ''' convert the measurement to inches '''
     if self._obs_value in self.MISSING:

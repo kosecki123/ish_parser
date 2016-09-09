@@ -18,3 +18,10 @@ class Observation(object):
       return True
     else:
       return False
+
+  def _get_numeric(self, missing):
+    if self._obs_value in missing:
+      return float('NaN')
+    else:
+      return str(self._obs_value)
+

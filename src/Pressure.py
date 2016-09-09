@@ -12,6 +12,9 @@ class Pressure(Observation):
     else:
       return False
 
+  def get_numeric(self):
+    return self._get_numeric(self.MISSING)
+
   def __str__(self):
     if self._obs_value in self.MISSING:
       return 'MISSING'

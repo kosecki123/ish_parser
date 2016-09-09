@@ -14,6 +14,9 @@ class Temperature(Observation):
     if self._obs_units == self.CELSIUS:
       return round(1.8 * self._obs_value + 32.0, 1)
 
+  def get_numeric(self):
+    return self._get_numeric(self.MISSING)
+
   def __str__(self):
     if self._obs_value in self.MISSING:
       return 'MISSING'

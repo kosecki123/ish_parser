@@ -1,6 +1,7 @@
 import unittest
 import datetime
 import pytz
+import math
 from src.ish_report import ish_report, ish_reportException
 
 class ish_report_test(unittest.TestCase):
@@ -192,3 +193,12 @@ class ish_report_test(unittest.TestCase):
     self.assertEqual(ish.sea_level_pressure, 9999.9)
     self.assertEqual(str(ish.sea_level_pressure), 'MISSING')
     self.assertEqual(str(ish.sky_ceiling), '22000')
+
+
+  def test_string_with_missing_temp_and_expect_NaN(self):
+    noaa = """0059035480999991943070124004+52467+000950FM-12+004699999V0200501N00461220001CN0040001N9+99999+99999999999ADDAY121999GA1001+999999999GF108991081051004501999999MW1051"""
+    ish = ish_report()
+    ish.loads(noaa)
+    self.assertEqual(ish.datetime,
+                     datetime.datetime(1943, 7, 2, 0, 0, tzinfo=pytz.UTC))
+    self.assertTrue(math.isnan(ish.air_temperature.get_numeric()))
